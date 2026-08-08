@@ -4,6 +4,23 @@ Sistema web desarrollado para la gestión administrativa de ventas, registro de 
 control automatizado de inventario. El proyecto está construido con **PHP (PDO)** y **MySQL**, 
 aplicando transacciones SQL atómicas para garantizar la integridad de los datos en todo momento.
 
+## 📷 Capturas de Pantalla del Sistema
+
+### 🏠 Módulo Principal (Inicio)
+![Módulo Inicio](Modulo%20Inicio.png)
+
+### 👥 Módulo de Clientes
+![Módulo Clientes](Modulo%20Clientes.png)
+
+### 📦 Módulo de Productos
+![Módulo Productos](Modulo%20Productos.png)
+
+### 💳 Módulo de Facturación
+![Módulo Facturación](Modulo%20Facturacion.png)
+
+### 🧾 Historial de Facturas
+![Historial de Facturas](Historial%20de%20Facturas.png)
+
 ---
 
 ## 🚀 Características Principales
@@ -27,10 +44,12 @@ aplicando transacciones SQL atómicas para garantizar la integridad de los datos
 
 ## 🗄️ Estructura de la Base de Datos
 
+### Vista de Tablas Relacionales (MySQL)
+![Estructura de la Base de Datos](Estructura_BD.png)
+
 El sistema se fundamenta en las siguientes tablas relacionales:
 
 * `factura_cabecera`: Almacena el ID único de la factura, fecha, cliente (`fk_cliente`) y caja (`fk_caja`).
 * `detalle_factura`: Registra los productos de cada factura (`fk_producto`, `fk_factura_cabecera`), cantidad y precio unitario.
 * `productos`: Controla el inventario (`id_producto`, `Nombre`, `cod_barra`, `precio_venta`, `stock`).
 * `clientes`: Información de compradores (`id_cliente`, `nombre_cliente`, `cedula`).
-
