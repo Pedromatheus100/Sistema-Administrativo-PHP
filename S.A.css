@@ -1,0 +1,326 @@
+/* ==========================================================================
+   1. RESET GENERAL Y CONFIGURACIÓN BASE
+   ========================================================================== */
+
+/* Aplicamos box-sizing universal para control exacto del ancho y alto de los elementos */
+* {
+    box-sizing: border-box; /* Incluye padding y border dentro del ancho total del elemento */
+    margin: 0;             /* Elimina los márgenes por defecto del navegador */
+    padding: 0;            /* Elimina los rellenos por defecto del navegador */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; /* Tipografía limpia estilo app moderna */
+}
+
+/* Estructura principal del body */
+body {
+    display: flex;          /* Organiza la sidebar y el contenido principal lado a lado */
+    min-height: 100vh;      /* Asegura que ocupe al menos el 100% del alto de la pantalla */
+    background-color: #f4f6f8; /* Fondo gris muy claro para el área de contenido */
+    color: #1e293b;         /* Color de texto principal gris oscuro/Slate */
+}
+
+/* ==========================================================================
+   2. BARRA LATERAL (SIDEBAR DE NAVEGACIÓN)
+   ========================================================================== */
+
+/* Contenedor principal de la barra lateral izquierda */
+.sidebar {
+    width: 250px;           /* Ancho fijo de la barra lateral */
+    background-color: #0d1527; /* Azul marino profundo idéntico al panel original */
+    color: #ffffff;         /* Texto blanco por defecto */
+    padding: 24px 16px;     /* Espaciado interno superior e inferior / lados */
+    display: flex;          /* Permite distribuir el logotipo, navegación y perfil verticalmente */
+    flex-direction: column; /* Alinea los elementos en columna de arriba a abajo */
+    justify-content: space-between; /* Empuja el perfil de usuario hacia el fondo */
+    flex-shrink: 0;         /* Evita que la barra se reduzca al cambiar el tamaño de ventana */
+}
+
+/* Título / Marca superior en la sidebar (AdminPanel) */
+.sidebar-brand {
+    display: flex;          /* Alinea el icono y el texto horizontalmente */
+    align-items: center;    /* Centra el icono verticalmente con el texto */
+    gap: 10px;              /* Espacio de 10px entre el icono y el texto AdminPanel */
+    font-size: 1.2rem;      /* Tamaño de fuente destacado */
+    font-weight: 700;       /* Texto en negrita fuerte */
+    color: #ffffff;         /* Color blanco puro */
+    padding: 0 12px;        /* Alineación con el resto del menú */
+    margin-bottom: 30px;    /* Separa la marca de la lista de navegación */
+}
+
+/* Lista desordenada de opciones del menú */
+.sidebar-nav {
+    list-style: none;       /* Elimina los puntos/viñetas por defecto de las listas */
+    display: flex;          /* Convierte la lista en contenedor flexible */
+    flex-direction: column; /* Ordena las pestañas una debajo de otra */
+    gap: 6px;               /* Separación constante de 6px entre cada elemento del menú */
+}
+
+/* Enlaces individuales de la barra lateral */
+.sidebar-nav a {
+    display: flex;          /* Alinea los iconos de texto y etiquetas en fila */
+    align-items: center;    /* Centra icono y texto verticalmente */
+    gap: 12px;              /* Espacio de 12px entre el icono de la pestaña y su texto */
+    padding: 12px 16px;     /* Relleno interno para crear el área interactiva clicable */
+    color: #94a3b8;         /* Color gris tenue para las pestañas inactivas */
+    text-decoration: none;  /* Quita el subrayado azul por defecto de los hipervínculos */
+    font-size: 0.95rem;     /* Tamaño de letra legible */
+    font-weight: 500;       /* Grosor de texto medio */
+    border-radius: 12px;    /* Bordes bastante redondeados estilo moderno */
+    transition: all 0.2s ease; /* Transición suave de 0.2 segundos al pasar el cursor */
+}
+
+/* Efecto Hover (al pasar el ratón sobre un enlace inactivo) */
+.sidebar-nav a:hover {
+    color: #ffffff;         /* Cambia la letra a blanco puro */
+    background-color: rgba(255, 255, 255, 0.05); /* Aplica un fondo blanco semi-transparente */
+}
+
+/* Estilo para la pestaña seleccionada/activa en la vista actual */
+.sidebar-nav a.active {
+    background-color: #0077ff; /* Azul azulado brillante idéntico a la imagen original */
+    color: #ffffff;            /* Texto completamente blanco */
+    font-weight: 600;          /* Resalta un poco más el grosor */
+    box-shadow: 0 4px 12px rgba(0, 119, 255, 0.3); /* Resplandor/sombra azul suave debajo de la pestaña */
+}
+
+/* ==========================================================================
+   3. SECCIÓN INFERIOR DE LA SIDEBAR (PERFIL DE USUARIO)
+   ========================================================================== */
+
+/* Contenedor de la información del usuario en la parte inferior de la sidebar */
+.user-profile {
+    display: flex;          /* Alinea el avatar circular a la izquierda de la información */
+    align-items: center;    /* Centra verticalmente el círculo del avatar y los textos */
+    gap: 12px;              /* Separación de 12px entre la foto y el nombre */
+    padding: 12px 8px;      /* Espaciado interno del bloque */
+    border-top: 1px solid rgba(255, 255, 255, 0.08); /* Línea divisoria discreta superior */
+    margin-top: auto;       /* Garantiza que se posicione al final de la barra */
+}
+
+/* Círculo del avatar con la inicial del usuario */
+.avatar {
+    width: 36px;            /* Ancho del círculo */
+    height: 36px;           /* Alto del círculo */
+    border-radius: 50%;     /* Redondeo perfecto a círculo */
+    background-color: #2dd4bf; /* Tono turquesa/verde agua como se ve en la foto original */
+    color: #0f172a;         /* Color de letra muy oscuro para máximo contraste */
+    display: flex;          /* Flexbox interno para centrado exacto */
+    align-items: center;    /* Centra verticalmente la letra 'P' */
+    justify-content: center;/* Centra horizontalmente la letra 'P' */
+    font-weight: 700;       /* Letra de la inicial en negrita */
+    font-size: 0.85rem;     /* Tamaño de letra adaptado */
+}
+
+/* Contenedor de los textos del nombre y rol */
+.user-info {
+    display: flex;          /* Estructura interna */
+    flex-direction: column; /* Coloca el nombre arriba y el rol abajo */
+}
+
+/* Nombre del usuario conectado */
+.user-name {
+    font-size: 0.85rem;     /* Tamaño de letra pequeño pero legible */
+    font-weight: 600;       /* Texto semifuerte */
+    color: #ffffff;         /* Color blanco puro */
+}
+
+/* Rol del usuario en el sistema */
+.user-role {
+    font-size: 0.75rem;     /* Tamaño más pequeño secundario */
+    color: #64748b;         /* Color gris apagado */
+}
+
+/* ==========================================================================
+   4. ÁREA PRINCIPAL DE CONTENIDO (MAIN CONTENT)
+   ========================================================================== */
+
+/* Contenedor derechohabiente que ocupa todo el espacio sobrante a la derecha */
+.main-content {
+    flex: 1;                /* Ocupa el 100% del espacio restante disponible */
+    padding: 32px 40px;     /* Espaciado interno amplio alrededor del contenido */
+    overflow-y: auto;       /* Permite scroll vertical si el contenido excede la pantalla */
+}
+
+/* ==========================================================================
+   5. BARRA DE BÚSQUEDA SUPERIOR (SEARCH BAR - TIPO PÍLDORA)
+   ========================================================================== */
+
+/* Contenedor relativo para alojar el input y posicionar el icono dentro */
+.search-container {
+    position: relative;     /* Permite posicionamiento absoluto del icono de lupa */
+    max-width: 480px;       /* Ancho máximo idéntico al diseño mostrado */
+    margin-bottom: 32px;    /* Margen inferior para separarlo de los títulos */
+}
+
+/* Input de búsqueda estilo cápsula/píldora */
+.search-input {
+    width: 100%;            /* Ocupa todo el ancho del contenedor (hasta 480px) */
+    padding: 12px 20px 12px 42px; /* Relleno con 42px a la izquierda para dejar espacio a la lupa */
+    background-color: #e2e8f0; /* Fondo grisáceo azulado claro */
+    border: none;           /* Sin borde visible */
+    border-radius: 50px;    /* Bordes hiperredondeados (efecto cápsula o píldora) */
+    font-size: 0.9rem;      /* Tamaño de fuente suave */
+    color: #334155;         /* Color del texto digitado */
+    outline: none;          /* Quita el borde por defecto al seleccionar */
+    transition: background-color 0.2s; /* Efecto fluido al enfocar */
+}
+
+/* Transición visual al hacer clic en el buscador */
+.search-input:focus {
+    background-color: #dbebe6; /* Ligero aclarado al enfocar el buscador */
+}
+
+/* Icono de la lupa ubicado dentro del input */
+.search-icon {
+    position: absolute;     /* Posicionamiento fijo respecto al .search-container */
+    left: 16px;             /* Separación de 16px del borde izquierdo */
+    top: 50%;               /* Centrado vertical al 50% */
+    transform: translateY(-50%); /* Ajuste de centrado vertical perfecto */
+    color: #64748b;         /* Color gris para el icono */
+    font-size: 0.9rem;      /* Tamaño adecuado de la lupa */
+}
+
+/* ==========================================================================
+   6. ENCABEZADOS Y TÍTULOS DE PÁGINA
+   ========================================================================== */
+
+/* Título de la vista actual (ej: Bienvenido, Pedro / Gestión de Productos) */
+.page-title {
+    font-size: 1.8rem;      /* Tamaño destacado y grande */
+    font-weight: 700;       /* Negrita gruesa y profesional */
+    color: #0f172a;         /* Color de texto oscuro azulado */
+    margin-bottom: 6px;     /* Espacio mínimo de separación con la bajada */
+}
+
+/* Subtítulo o descripción secundaria de la vista */
+.page-subtitle {
+    font-size: 0.95rem;     /* Tamaño de fuente medio */
+    color: #64748b;         /* Color gris de texto secundario */
+    margin-bottom: 28px;    /* Separación previa a las tarjetas o formularios */
+}
+
+/* ==========================================================================
+   7. TARJETAS (CARDS), FORMULARIOS Y ELEMENTOS DE DATOS
+   ========================================================================== */
+
+/* Tarjetas contenedor blanco para formularios e inventario */
+.card {
+    background-color: #ffffff; /* Fondo blanco limpio para hacer contraste con el body */
+    border-radius: 16px;    /* Bordes suavemente redondeados */
+    padding: 24px;          /* Espaciado interno amplio */
+    border: 1px solid #e2e8f0; /* Borde muy tenue de definición */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02); /* Sombra extremadamente ligera */
+    margin-bottom: 28px;    /* Separación entre tarjetas sucesivas */
+}
+
+/* Encabezado superior dentro de cada tarjeta */
+.card-header {
+    display: flex;          /* Alinea el icono de la tarjeta con el texto */
+    align-items: center;    /* Centra verticalmente */
+    gap: 10px;              /* Separa icono del título */
+    font-size: 1.05rem;     /* Tamaño ligeramente mayor al texto base */
+    font-weight: 600;       /* Negrita media */
+    color: #0f172a;         /* Tono oscuro */
+    margin-bottom: 20px;    /* Margen inferior para dar aire a los inputs */
+}
+
+/* Disposición en cuadrícula para 3 campos por fila */
+.form-grid {
+    display: grid;          /* Utiliza sistema de cuadrícula CSS Grid */
+    grid-template-columns: repeat(3, 1fr); /* Crea 3 columnas de igual tamaño */
+    gap: 20px;              /* Espacio de 20px entre columnas y filas */
+}
+
+/* Agrupador de etiqueta + campo de entrada */
+.form-group {
+    display: flex;          /* Coloca la etiqueta encima del input */
+    flex-direction: column; /* Disposición vertical */
+    gap: 6px;               /* Separación de 6px entre la etiqueta y el input */
+}
+
+/* Estilo de las etiquetas de los inputs */
+.form-group label {
+    font-size: 0.85rem;     /* Letra pequeña */
+    font-weight: 600;       /* Texto en negrita clara */
+    color: #475569;         /* Color Slate intermedio */
+}
+
+/* Estilo visual para campos de texto y listas desplegables */
+.form-group input, 
+.form-group select {
+    width: 100%;            /* Rellena todo el ancho de su columna */
+    padding: 10px 14px;     /* Relleno cómodo de digitación */
+    border: 1px solid #cbd5e1; /* Borde gris estándar */
+    border-radius: 8px;     /* Redondeo sutil en esquinas */
+    font-size: 0.9rem;      /* Tamaño de fuente uniforme */
+    color: #0f172a;         /* Color del texto escrito */
+    background-color: #f8fafc; /* Fondo grisáceo claro para los inputs */
+    outline: none;          /* Quita el borde por defecto del navegador */
+}
+
+/* Estado de enfoque cuando el usuario pulsa en un input */
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #0077ff;  /* El borde pasa al azul primario */
+    background-color: #ffffff; /* El fondo se vuelve blanco puro */
+}
+
+/* Botón principal de guardado */
+.btn-submit {
+    background-color: #0077ff; /* Azul vibrante coincidente con la pestaña activa */
+    color: #ffffff;            /* Texto blanco */
+    border: none;              /* Sin bordes marcados */
+    padding: 11px 24px;        /* Relleno cómodo para pulsar */
+    border-radius: 8px;        /* Esquinas suavizadas */
+    font-size: 0.9rem;         /* Tamaño de letra equilibrado */
+    font-weight: 600;          /* Texto en negrita */
+    cursor: pointer;           /* Cambia el puntero al icono de mano */
+    margin-top: 20px;          /* Separación del bloque de inputs superior */
+    transition: background-color 0.2s; /* Suaviza el cambio de color */
+}
+
+/* Efecto hover en el botón guardar */
+.btn-submit:hover {
+    background-color: #0066de; /* Oscurece un tono el azul para dar feedback visual */
+}
+
+/* ==========================================================================
+   8. TABLA DE DATOS (INVENTARIO Y RESULTADOS)
+   ========================================================================== */
+
+/* Envoltorio responsivo para evitar desbordamiento en pantallas ajustadas */
+.table-responsive {
+    width: 100%;            /* Ocupa todo el ancho */
+    overflow-x: auto;       /* Permite scroll horizontal solo si la pantalla es reducida */
+}
+
+/* Estructura general de la tabla */
+table {
+    width: 100%;            /* Ocupa todo el espacio de la tarjeta */
+    border-collapse: collapse; /* Elimina dobles bordes entre celdas */
+    text-align: left;       /* Alineación de datos a la izquierda */
+}
+
+/* Encabezados de columna de la tabla */
+th {
+    font-size: 0.75rem;     /* Fuente pequeña estilo etiqueta */
+    font-weight: 700;       /* Negrita marcada */
+    text-transform: uppercase; /* Convierte todo el texto del encabezado a mayúsculas */
+    color: #64748b;         /* Gris de contraste medio */
+    padding: 12px 16px;     /* Relleno regular por celda de título */
+    border-bottom: 1px solid #e2e8f0; /* Línea divisoria inferior */
+}
+
+/* Filas y celdas individuales de contenido en la tabla */
+td {
+    padding: 14px 16px;     /* Relleno amplio para mayor legibilidad */
+    font-size: 0.9rem;      /* Tamaños de letra legibles para datos */
+    color: #334155;         /* Tono oscuro cómodo para lectura */
+    border-bottom: 1px solid #f1f5f9; /* Separador tenue entre registros */
+}
+
+/* Celda vacía sin registros */
+.empty-table {
+    text-align: center;     /* Centra el mensaje de falta de registros */
+    color: #94a3b8;         /* Color de texto atenuado */
+    padding: 30px;          /* Relleno amplio vertical */
+}
